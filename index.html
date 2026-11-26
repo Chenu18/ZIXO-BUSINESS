@@ -10,7 +10,7 @@
 :root{--bg:#09090d;--panel:#15151d;--panel2:#1d1b24;--red:#e21c2a;--gold:#e7bd59;--text:#f7f5f5;--muted:#aaa5ad;--line:#302b33;--green:#20a568}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
 button,input,textarea,select{font:inherit}button{cursor:pointer}
-.hero{min-height:330px;position:relative;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(7,5,7,.94),rgba(10,5,8,.58)),url('./assets/zixo-art.jpg') center 34%/cover}
+.hero{min-height:330px;position:relative;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(7,5,7,.94),rgba(10,5,8,.58)),url('./zixo-art.jpg') center 34%/cover}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),transparent 45%);pointer-events:none}
 nav{height:76px;display:flex;align-items:center;justify-content:space-between;max-width:1180px;padding:0 22px;margin:auto;position:relative;z-index:2;width:100%}
 .brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:25px;letter-spacing:2px}.brand img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:1px solid var(--gold)}
@@ -168,7 +168,7 @@ footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;colo
 <header class="hero">
   <nav>
     <div class="brand">
-      <img src="./assets/zixo-art.jpg" alt="ZIXO logo">
+      <img src="./zixo-art.jpg" alt="ZIXO logo">
       <span>ZIXO BUSINESS</span>
     </div>
 
@@ -395,7 +395,7 @@ function renderProducts(){
           <article class="card">
 
             <img
-              src="${safe(imgs[0]||"./assets/zixo-art.jpg")}"
+              src="${safe(imgs[0]||"./zixo-art.jpg")}"
               alt="${safe(p.title)}"
             >
 
