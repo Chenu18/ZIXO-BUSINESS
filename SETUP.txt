@@ -1,0 +1,71 @@
+ZIXO WEBSITE — SETUP GUIDE
+
+FILES
+- index.html              Main website
+- supabase-schema.sql     Database tables and security policies
+- assets/zixo-art.jpg     Your uploaded ZIXO artwork
+
+IMPORTANT
+This is a connected website starter. The public catalogue and secure dashboards
+will work only after Supabase is configured. Do not publish it as a live store
+before completing these steps.
+
+1) CREATE A SUPABASE PROJECT
+- Open https://supabase.com and create a free project.
+- Choose a strong database password and keep it private.
+- Open Project Settings > API.
+- Copy the Project URL and anon/public key.
+
+2) CREATE THE DATABASE
+- In Supabase, open SQL Editor > New query.
+- Open supabase-schema.sql from this project.
+- Copy all SQL into the editor and run it.
+
+3) CREATE OWNER LOGIN
+- Open Authentication > Users > Add user.
+- Create your owner email and a strong password.
+- Confirm the user if Supabase asks.
+- In SQL Editor, replace YOUR_OWNER_EMAIL and YOUR OWNER DISPLAY NAME
+  in the final UPDATE statement in supabase-schema.sql, then run that UPDATE.
+- Never share your owner password.
+
+4) CREATE SELLER LOGIN
+- In Authentication > Users > Add user, create the seller email/password.
+- The database trigger automatically creates a seller profile.
+- Do not promote the seller to owner.
+
+5) CONNECT THE WEBSITE
+- Open index.html in a code editor.
+- Find:
+  const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL";
+  const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY";
+- Replace the placeholders with your Supabase Project URL and anon/public key.
+- Never put the service_role key in index.html.
+
+6) TEST BEFORE PUBLISHING
+- Open index.html through a local web server (VS Code Live Server).
+- Sign in as owner; confirm owner dashboard and footer settings.
+- Sign in as seller; confirm seller can manage listings but cannot access owner tabs.
+- Submit a customer review; confirm it stays hidden until owner approves it.
+- Test WhatsApp contact and price filters.
+
+7) HOSTING
+You can deploy the files to Cloudflare Pages or another static host.
+The Supabase free tier has usage limits and provider terms can change.
+Do not enter payment details or enable paid services unless you intentionally
+choose to. Check the current provider requirements before creating an account.
+
+SECURITY NOTES
+- Owner/seller access is enforced by Supabase Row Level Security, not just by
+  hiding buttons in the browser.
+- The seller can modify only products where seller_id matches their login.
+- Owner role is assigned manually in the database.
+- The public can submit reviews, but only the owner can approve them.
+- Never upload account passwords, OTPs, recovery codes, or private login data.
+- The public image bucket is intended only for listing photos.
+- This project does not implement payments or checkout.
+
+CUSTOMIZE
+- Add the owner's display name and contact details in Owner dashboard > Website footer.
+- Add seller's public phone and WhatsApp in Seller dashboard > Contact details.
+- Replace the uploaded ZIXO artwork in assets/zixo-art.jpg to change branding.
