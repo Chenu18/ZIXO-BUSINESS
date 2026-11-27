@@ -2,251 +2,204 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#10090b">
-<title>ZIXO | Account Store</title>
+<meta name="description" content="ZIXO BUSINESS gaming account catalogue and top-up price lists.">
+<title>ZIXO BUSINESS | Gaming Account Store</title>
 <link rel="icon" href="./zixo-art.jpg">
 <style>
-:root{--bg:#09090d;--panel:#15151d;--panel2:#1d1b24;--red:#e21c2a;--gold:#e7bd59;--text:#f7f5f5;--muted:#aaa5ad;--line:#302b33;--green:#20a568}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
-button,input,textarea,select{font:inherit}button{cursor:pointer}
-.hero{min-height:330px;position:relative;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(7,5,7,.94),rgba(10,5,8,.58)),url('./zixo-art.jpg') center 34%/cover}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),transparent 45%);pointer-events:none}
-nav{height:76px;display:flex;align-items:center;justify-content:space-between;max-width:1180px;padding:0 22px;margin:auto;position:relative;z-index:2;width:100%}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:25px;letter-spacing:2px}.brand img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:1px solid var(--gold)}
-.nav-actions{display:flex;gap:9px;align-items:center}.btn{border:0;border-radius:9px;padding:11px 15px;font-weight:700;background:var(--red);color:white}.btn.secondary{background:#28232a;border:1px solid #51414a}.btn.small{padding:8px 11px;font-size:13px}
-.hero-content{
-  max-width:1180px;
-  width:100%;
-  margin:35px auto 0;
-  padding:35px 24px 85px;
-  position:relative;
-  z-index:1;
-  text-align:center;
+:root{
+  --bg:#09090d;--panel:#15151d;--panel2:#1d1b24;--red:#e21c2a;
+  --gold:#e7bd59;--text:#f7f5f5;--muted:#aaa5ad;--line:#302b33;
+  --green:#20a568;--radius:16px;--page:1180px;
 }
-.hero-content .eyebrow{
-  display:inline-block;
-  padding:9px 16px;
-  border:1px solid rgba(231,189,89,.35);
-  border-radius:30px;
-  background:rgba(231,189,89,.08);
-}
-.hero-content h1{
-  margin:22px auto 14px;
-  line-height:1.1;
-  letter-spacing:2px;
-}
-.hero-content p{
-  margin:0 auto;
-}.eyebrow{color:var(--gold);font-weight:800;letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(34px,6vw,64px);max-width:700px;margin:12px 0}.hero p{color:#d0c8cc;max-width:560px;line-height:1.6}
-main{max-width:1180px;margin:auto;padding:24px 20px 70px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:18px 0}.section-head h2{margin:0;font-size:25px}.muted{color:var(--muted)}.filters{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;background:var(--panel);padding:14px;border:1px solid var(--line);border-radius:14px;margin:20px 0}
-.field{width:100%;background:#0e0d12;color:white;border:1px solid #3a333d;border-radius:8px;padding:12px;min-width:0}.field:focus{outline:1px solid var(--gold);border-color:var(--gold)}
-/* PREMIUM ACCOUNT CARDS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;
-}
-
-.card{
-  background:linear-gradient(145deg,#19171e,#100f14);
-  border:1px solid #39303a;
-  border-radius:16px;
-  overflow:hidden;
-  transition:transform .2s,border-color .2s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  border-color:var(--gold);
-}
-
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  background:#24212a;
-}
-
-.card-body{padding:16px}
-.card h3{margin:12px 0 8px;font-size:19px}
-
-.price{
-  font-size:25px;
-  font-weight:900;
-  color:var(--gold);
-  margin:13px 0;
-}
-
-.tag{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
-  background:#123c2d;
-  color:#7ce0b0;
-  font-size:11px;
-  font-weight:800;
-}
-
-.tag.sold{
-  background:#442126;
-  color:#ff9da5;
-}
-
-.seller-phone{
-  background:#211d25;
-  border:1px solid #39303a;
-  padding:10px;
-  border-radius:9px;
-  margin-top:12px;
-  font-size:13px;
-}
-
-.seller-phone strong{
-  color:var(--gold);
-  display:block;
-  margin-top:4px;
-}
-
-.card-actions{
-  display:flex;
-  gap:8px;
-  margin-top:13px;
-}
-
-.card-actions>*{
-  flex:1;
-  text-align:center;
-  text-decoration:none;
-}
-.topup-section{
-  max-width:1180px;
-  margin:35px auto;
-  padding:24px 20px;
-}
-.topup-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
-}
-.topup-card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px;
-  overflow:hidden;
-}
-.topup-card img{
-  width:100%;
-  max-height:280px;
-  object-fit:contain;
-  border-radius:9px;
-  cursor:pointer;
-}
-
-@media(max-width:800px){
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;max-width:100%;overflow-x:hidden}
+body{margin:0;min-width:320px;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+img{max-width:100%}
+button,input,textarea,select{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.eyebrow{color:var(--gold);font-weight:800;letter-spacing:2px;font-size:11px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;border:0;border-radius:9px;padding:11px 15px;font-weight:700;background:var(--red);color:#fff;text-decoration:none;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.btn.secondary{background:#28232a;border:1px solid #51414a}
+.btn.whatsapp{background:#147c4b;color:#fff}
+.btn.small{min-height:36px;padding:8px 11px;font-size:13px}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.hero{min-height:390px;position:relative;display:flex;flex-direction:column;align-items:center;overflow:hidden;background:linear-gradient(90deg,rgba(7,5,7,.95),rgba(10,5,8,.62)),url('./zixo-art.jpg') center 34%/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),transparent 48%);pointer-events:none}
+nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:var(--page);padding:10px 22px;margin:auto;position:relative;z-index:2;width:100%}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:clamp(17px,2.2vw,25px);letter-spacing:2px;min-width:0}
+.brand img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:1px solid var(--gold);flex:none}
+.nav-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.hero-content{max-width:var(--page);width:100%;margin:24px auto 0;padding:30px 24px 75px;position:relative;z-index:1;text-align:center}
+.hero-content .eyebrow{display:inline-block;padding:9px 16px;border:1px solid rgba(231,189,89,.35);border-radius:30px;background:rgba(231,189,89,.08)}
+.hero-content h1{font-size:clamp(34px,6vw,64px);max-width:760px;margin:22px auto 14px;line-height:1.08;letter-spacing:2px;overflow-wrap:anywhere}
+.hero-content p{margin:0 auto;color:#d0c8cc;max-width:560px;line-height:1.6}
+.hero-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:24px auto 0}
+.hero-contact{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px auto 0}
+main{max-width:var(--page);width:100%;margin:auto;padding:24px 20px 70px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:22px 0 16px;min-width:0}
+.section-head h2{margin:5px 0;font-size:clamp(21px,3vw,27px)}
+.filters{display:grid;grid-template-columns:minmax(180px,2fr) repeat(4,minmax(0,1fr));gap:10px;background:var(--panel);padding:14px;border:1px solid var(--line);border-radius:14px;margin:20px 0}
+.field{width:100%;min-width:0;min-height:44px;background:#0e0d12;color:white;border:1px solid #3a333d;border-radius:8px;padding:12px}
+.field:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+textarea.field{resize:vertical}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;min-width:0}
+.card{min-width:0;background:linear-gradient(145deg,#19171e,#100f14);border:1px solid #39303a;border-radius:16px;overflow:hidden}
+.card:hover{border-color:var(--gold)}
+.card>img{display:block;width:100%;height:220px;object-fit:cover;background:#24212a}
+.card-body{padding:16px;min-width:0}
+.card h3{margin:12px 0 8px;font-size:19px;overflow-wrap:anywhere}
+.price{font-size:25px;font-weight:900;color:var(--gold);margin:13px 0}
+.tag{display:inline-block;padding:6px 10px;border-radius:20px;background:#123c2d;color:#7ce0b0;font-size:11px;font-weight:800}
+.tag.sold{background:#442126;color:#ff9da5}
+.seller-phone{background:#211d25;border:1px solid #39303a;padding:10px;border-radius:9px;margin-top:10px;font-size:13px;overflow-wrap:anywhere}
+.seller-phone strong{color:var(--gold);display:block;margin-top:4px}
+.card-actions{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap}
+.card-actions>*{flex:1;min-width:110px}
+.empty{padding:32px 18px;text-align:center;border:1px dashed #514650;border-radius:14px;color:var(--muted);grid-column:1/-1}
+.topup-section{max-width:var(--page);width:100%;margin:30px auto;padding:18px 20px}
+.topup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px;min-width:0}
+.topup-card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;overflow:hidden}
+.topup-card img{display:block;width:100%;max-height:280px;object-fit:contain;border-radius:9px;cursor:pointer;background:#0e0d12}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:9px;margin-top:10px}
+.proof-grid img{width:100%;height:130px;object-fit:cover;border-radius:9px;border:1px solid var(--line);background:#0e0d12}
+footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:#8f8992;font-size:12px;overflow-wrap:anywhere}
+footer strong{color:#c6bdc5}
+.modal-backdrop{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;padding:12px;z-index:50}
+.modal{width:min(680px,100%);max-height:calc(100dvh - 24px);overflow:auto;background:#17151c;border:1px solid #50404a;border-radius:16px;padding:20px;overscroll-behavior:contain}
+.modal h2{margin-top:0;overflow-wrap:anywhere}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.form-grid .full{grid-column:1/-1}
+.form-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}
+.dashboard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:20px 0;min-width:0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tab.active{background:var(--red)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-width:0}
+.admin-list{display:grid;gap:9px;min-width:0}
+.admin-item{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#201d25;padding:12px;border-radius:10px;min-width:0}
+.admin-item>div:first-child{min-width:0;overflow-wrap:anywhere}
+.stars{color:var(--gold);letter-spacing:2px}
+.review{padding:13px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.notice{padding:12px;border-radius:9px;background:#2c2025;color:#f3c4c8;margin:12px 0;font-size:13px}
+.help{font-size:12px;color:var(--muted);line-height:1.5}
+.inline-check{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+@media(max-width:900px){
   .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filters .search-field{grid-column:1/-1}
 }
-
-@media(max-width:540px){
+@media(max-width:600px){
+  nav{padding:10px 13px;align-items:flex-start;flex-direction:column;gap:10px}
+  .brand{font-size:19px}
+  .brand img{width:40px;height:40px}
+  .nav-actions{width:100%;justify-content:flex-start}
+  .nav-actions .btn{flex:1;min-width:0}
+  .hero{min-height:390px}
+  .hero-content{margin:12px auto 0;padding:24px 15px 55px}
+  .hero-content h1{font-size:clamp(32px,10vw,46px);letter-spacing:1px}
+  main{padding:18px 12px 45px}
+  .topup-section{padding:14px 12px;margin:20px auto}
   .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .card img{height:145px}
+  .card>img{height:clamp(115px,34vw,165px)}
   .card-body{padding:10px}
   .card h3{font-size:15px}
-  .price{font-size:19px}
+  .price{font-size:19px;margin:10px 0}
+  .card-actions{gap:6px}
+  .card-actions>*{min-width:0;font-size:12px;padding:9px 7px}
+  .filters{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px;gap:8px}
+  .filters .search-field{grid-column:1/-1}
+  .section-head{align-items:flex-start;flex-direction:column}
+  .form-grid{grid-template-columns:minmax(0,1fr)}
+  .form-grid .full{grid-column:auto}
+  .dashboard{padding:12px}
+  .tabs .btn{flex:1 1 calc(50% - 8px)}
+  .admin-item .row{width:100%}
+  .admin-item .row .btn{flex:1}
+  .modal{padding:15px}
 }
-.tag{display:inline-block;padding:5px 8px;border-radius:20px;background:#123c2d;color:#7ce0b0;font-size:11px;font-weight:800}.tag.sold{background:#442126;color:#ff9da5}.card-actions{display:flex;gap:8px;margin-top:12px}
-.empty{padding:40px;text-align:center;border:1px dashed #514650;border-radius:14px;color:var(--muted)}
-footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;color:#8f8992;font-size:12px}footer strong{color:#c6bdc5}
-.modal-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:15px;z-index:20}.modal{width:min(620px,100%);max-height:90vh;overflow:auto;background:#17151c;border:1px solid #50404a;border-radius:16px;padding:20px}.modal h2{margin-top:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-grid .full{grid-column:1/-1}.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}.hidden{display:none!important}.dashboard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:20px 0}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.tab.active{background:var(--red)}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.admin-list{display:grid;gap:9px}.admin-item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#201d25;padding:12px;border-radius:10px}.stars{color:var(--gold);letter-spacing:2px}.review{padding:13px;border-bottom:1px solid var(--line)}.notice{padding:12px;border-radius:9px;background:#2c2025;color:#f3c4c8;margin:12px 0;font-size:13px}
-@media(max-width:800px){.products{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.filters input:first-child{grid-column:1/-1}}
-@media(max-width:540px){nav{padding:0 14px}.brand{font-size:20px}.brand img{width:40px;height:40px}.nav-actions .secondary{display:none}.hero{min-height:350px}.products{grid-template-columns:1fr 1fr;gap:10px}.card img{height:145px}.card-body{padding:11px}.card h3{font-size:15px}.price{font-size:19px}.filters{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}}
+@media(max-width:360px){
+  .products{grid-template-columns:minmax(0,1fr)}
+  .card>img{height:210px}
+  .hero-contact .btn{width:100%}
+  .filters{grid-template-columns:minmax(0,1fr)}
+  .filters .search-field{grid-column:auto}
+}
 </style>
 </head>
 <body>
-
 <header class="hero">
   <nav>
-    <div class="brand">
-      <img src="./zixo-art.jpg" alt="ZIXO logo">
-      <span>ZIXO BUSINESS</span>
-    </div>
-
+    <div class="brand"><img src="./zixo-art.jpg" alt="ZIXO logo"><span>ZIXO BUSINESS</span></div>
     <div class="nav-actions">
       <button class="btn secondary small" onclick="openReviews()">Customer reviews</button>
       <button class="btn small" id="loginNav" onclick="openLogin()">Seller / Owner login</button>
       <button class="btn secondary small hidden" id="logoutNav" onclick="logout()">Logout</button>
     </div>
   </nav>
-
   <div class="hero-content">
     <div class="eyebrow">SRI LANKA • GAMING ACCOUNT STORE</div>
     <h1>LEVEL UP WITH <span style="color:var(--gold)">ZIXO.</span></h1>
     <p>Explore gaming accounts. Find your next gaming experience.</p>
-
-    <div class="card-actions" style="max-width:330px;margin:24px auto 0">
+    <div class="hero-buttons">
       <a class="btn" href="#products">Explore Accounts</a>
       <button class="btn secondary" onclick="openReviews()">Reviews</button>
     </div>
-
-    <p style="font-size:13px;margin-top:22px;color:var(--muted)">
-      ZIXO BUSINESS · Direct seller contact
-    </p>
-  </div>
-</header>
-<section class="topup-section">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">ZIXO TOP-UP CENTER</div>
-      <h2>Game Top-Up Prices</h2>
-      <p class="muted">Check the latest top-up price lists.</p>
+    <div class="hero-contact">
+      <a class="btn whatsapp" href="https://wa.me/94767128131" target="_blank" rel="noopener">WhatsApp 0767128131</a>
+      <a class="btn whatsapp" href="https://wa.me/94728614316" target="_blank" rel="noopener">WhatsApp 0728614316</a>
     </div>
   </div>
-  <div id="topupPreview" class="topup-grid">
-    <div class="empty">Top-up price lists will appear here.</div>
-  </div>
+</header>
+
+<section class="topup-section">
+  <div class="section-head"><div><div class="eyebrow">ZIXO TOP-UP CENTER</div><h2>Game Top-Up Prices</h2><p class="muted">Check the latest top-up price lists.</p></div></div>
+  <div id="topupPreview" class="topup-grid"><div class="empty">Top-up price lists will appear here.</div></div>
 </section>
+
 <main>
   <section class="section-head"><div><div class="eyebrow">THE CATALOGUE</div><h2>Available accounts</h2><div class="muted" id="resultCount">Loading listings…</div></div></section>
-  <section class="filters">
-    <input class="field" id="search" placeholder="Search accounts…" oninput="renderProducts()">
+  <section class="filters" aria-label="Account filters">
+    <input class="field search-field" id="search" placeholder="Search accounts…" oninput="renderProducts()">
+    <select class="field" id="categoryFilter" onchange="renderProducts()">
+      <option value="all">All account types</option><option value="TikTok">TikTok (TT)</option><option value="Free Fire">Free Fire (FF)</option><option value="YouTube">YouTube (YT)</option><option value="Other">Other</option>
+    </select>
     <input class="field" id="minPrice" type="number" min="0" placeholder="Min price (Rs.)" oninput="renderProducts()">
     <input class="field" id="maxPrice" type="number" min="0" placeholder="Max price (Rs.)" oninput="renderProducts()">
     <select class="field" id="statusFilter" onchange="renderProducts()"><option value="available">Available</option><option value="all">All listings</option><option value="sold">Sold</option></select>
   </section>
   <section class="products" id="products"></section>
+
   <section class="topup-section">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">ZIXO TOP-UP CENTER</div>
-      <h2>All Top-Up Price Lists</h2>
-      <p class="muted">Browse available gaming top-up packages.</p>
-    </div>
-  </div>
+    <div class="section-head"><div><div class="eyebrow">ZIXO TOP-UP CENTER</div><h2>All Top-Up Price Lists</h2><p class="muted">Browse available gaming top-up packages.</p></div></div>
+    <div id="topupGallery" class="topup-grid"><div class="empty">Top-up price lists will appear here.</div></div>
+  </section>
 
-  <div id="topupGallery" class="topup-grid">
-    <div class="empty">Top-up price lists will appear here.</div>
-  </div>
-</section>
-
-  <section class="section-head"><div><div class="eyebrow">REAL EXPERIENCES</div><h2>Customer feedback</h2><div class="muted">Reviews are published after owner approval.</div></div><button class="btn secondary" onclick="openReviewForm()">Write a review</button></section>
+  <section class="section-head"><div><div class="eyebrow">REAL EXPERIENCES</div><h2>Customer feedback</h2><div class="muted">Reviews are published after moderation.</div></div><button class="btn secondary" onclick="openReviewForm()">Write a review</button></section>
   <section class="dashboard" id="publicReviews"><div class="muted">Loading approved reviews…</div></section>
 
   <section id="dashboard" class="dashboard hidden">
-    <div class="row" style="justify-content:space-between"><div><div class="eyebrow">PRIVATE AREA</div><h2 id="dashTitle">Dashboard</h2><div class="muted" id="dashRole"></div></div><button class="btn secondary small" onclick="logout()">Sign out</button></div>
+    <div class="row" style="justify-content:space-between">
+      <div><div class="eyebrow">PRIVATE AREA</div><h2 id="dashTitle">Dashboard</h2><div class="muted" id="dashRole"></div></div>
+      <button class="btn secondary small" onclick="logout()">Sign out</button>
+    </div>
     <div class="tabs">
       <button class="btn small tab active" data-tab="listings" onclick="showTab('listings')">Listings</button>
       <button class="btn secondary small tab" data-tab="profile" onclick="showTab('profile')">Contact details</button>
       <button class="btn secondary small tab" data-tab="topups" onclick="showTab('topups')">Top-up images</button>
-      <button class="btn secondary small tab owner-only hidden" data-tab="reviews" onclick="showTab('reviews')">Review approval</button>
-      <button class="btn secondary small tab owner-only hidden" data-tab="settings" onclick="showTab('settings')">Website footer</button>
+      <button class="btn secondary small tab" data-tab="reviews" onclick="showTab('reviews')">Review approval</button>
+      <button class="btn secondary small tab" data-tab="settings" onclick="showTab('settings')">Website footer</button>
     </div>
     <div id="tab-listings">
       <div class="row" style="justify-content:space-between;margin-bottom:12px"><strong>Manage account listings</strong><button class="btn small" onclick="openProductForm()">+ Add account</button></div>
       <div id="myListings" class="admin-list"></div>
     </div>
     <div id="tab-profile" class="hidden">
-      <h3>Seller contact information</h3>
+      <h3>Business contact information</h3>
       <form id="profileForm" class="form-grid">
         <input class="field" name="display_name" placeholder="Seller / business name" required>
         <input class="field" name="phone" placeholder="Phone number">
@@ -254,378 +207,298 @@ footer{border-top:1px solid var(--line);padding:24px 20px;text-align:center;colo
         <input class="field" name="facebook" placeholder="Facebook page URL">
         <button class="btn full">Save contact details</button>
       </form>
+      <p class="help">These details are associated with the currently signed-in seller profile.</p>
     </div>
     <div id="tab-topups" class="hidden">
-  <h3>Manage Top-Up Price Lists</h3>
-  <p class="muted">Upload price-list images for customers to view.</p>
-
-  <form id="topupUploadForm" class="form-grid">
-    <input class="field full" type="text" id="topupTitle"
-      placeholder="Title (e.g. Free Fire Diamonds)" required>
-
-    <input class="field full" type="file" id="topupImages"
-      accept="image/*" multiple required>
-
-    <button class="btn full" type="submit">Upload images</button>
-  </form>
-
-  <div id="topupManager" class="topup-grid" style="margin-top:20px">
-    <div class="empty">Your uploaded images will appear here.</div>
-  </div>
-</div>
-    <div id="tab-reviews" class="hidden owner-only">
+      <h3>Manage Top-Up Price Lists</h3><p class="muted">Upload price-list images for customers to view.</p>
+      <form id="topupUploadForm" class="form-grid">
+        <input class="field full" type="text" id="topupTitle" placeholder="Title (e.g. Free Fire Diamonds)" required>
+        <input class="field full" type="file" id="topupImages" accept="image/*" multiple required>
+        <button class="btn full" type="submit">Upload images</button>
+      </form>
+      <div id="topupManager" class="topup-grid" style="margin-top:20px"><div class="empty">Your uploaded images will appear here.</div></div>
+    </div>
+    <div id="tab-reviews" class="hidden">
       <h3>Review moderation</h3><div id="pendingReviews" class="admin-list"></div>
     </div>
-    <div id="tab-settings" class="hidden owner-only">
-      <h3>Small footer owner details</h3>
+    <div id="tab-settings" class="hidden">
+      <h3>Website footer details</h3>
       <form id="settingsForm" class="form-grid">
-        <input class="field" name="owner_name" placeholder="Owner display name">
-        <input class="field" name="owner_phone" placeholder="Owner phone (optional)">
-        <input class="field" name="owner_whatsapp" placeholder="Owner WhatsApp (optional)">
+        <input class="field" name="owner_name" placeholder="Business display name">
+        <input class="field" name="owner_phone" placeholder="Phone (optional)">
+        <input class="field" name="owner_whatsapp" placeholder="WhatsApp (optional)">
         <input class="field" name="footer_text" placeholder="Short footer text">
         <button class="btn full">Save footer</button>
       </form>
     </div>
   </section>
 </main>
-<footer><div id="footerText">ZIXO • Account catalogue</div><div id="ownerFooter" style="margin-top:7px"></div></footer>
+
+<footer><div id="footerText">ZIXO • Account catalogue</div><div id="ownerFooter" style="margin-top:7px"></div><div class="hero-contact"><a class="btn whatsapp small" href="https://wa.me/94767128131" target="_blank" rel="noopener">WhatsApp 0767128131</a><a class="btn whatsapp small" href="https://wa.me/94728614316" target="_blank" rel="noopener">WhatsApp 0728614316</a></div></footer>
 
 <div class="modal-backdrop" id="modal">
- <div class="modal"><div class="row" style="justify-content:space-between"><h2 id="modalTitle">Sign in</h2><button class="btn secondary small" onclick="closeModal()">Close</button></div><div id="modalBody"></div></div>
+  <div class="modal">
+    <div class="row" style="justify-content:space-between"><h2 id="modalTitle">Sign in</h2><button class="btn secondary small" onclick="closeModal()">Close</button></div>
+    <div id="modalBody"></div>
+  </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/*
-  SETUP: Paste your Supabase Project URL and anon/public key below.
-  Never paste a Supabase service_role key into this file.
-*/
-const SUPABASE_URL = "https://kvxcvfiukkkgblzpmbyp.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_eDU7BIOify_8Gu_EekdmAg_xtl_ggmM";
-const configured = SUPABASE_URL.startsWith("https://") && !SUPABASE_ANON_KEY.startsWith("PASTE_");
-const db = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-let currentUser=null, profile=null, role=null, productsCache=[], topupImagesCache=[];
+/* Supabase public/publishable key only. Never place a service_role key in this file. */
+const SUPABASE_URL="https://kvxcvfiukkkgblzpmbyp.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_eDU7BIOify_8Gu_EekdmAg_xtl_ggmM";
+const db=window.supabase?.createClient(SUPABASE_URL,SUPABASE_ANON_KEY)||null;
+const WA_NUMBERS=["94767128131","94728614316"];
+let currentUser=null,profile=null,role=null,productsCache=[],topupImagesCache=[];
 const $=id=>document.getElementById(id);
 function money(n){return "Rs. "+Number(n||0).toLocaleString("en-LK")}
-function safe(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function msg(text){alert(text)}
+function safe(s=""){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function msg(t){alert(t)}
 function closeModal(){$("modal").style.display="none"}
 function showModal(title,html){$("modalTitle").textContent=title;$("modalBody").innerHTML=html;$("modal").style.display="flex"}
-function openLogin(){if(!db){showModal("Connect ZIXO database",`<div class="notice">The website design is ready, but login and shared listings need a Supabase project first. Follow SETUP.txt in the downloaded project. Do not publish this as a working store until configured.</div>`);return}
- showModal("Seller / Owner login",`<form id="loginForm"><input class="field" name="email" type="email" placeholder="Email address" required><br><br><input class="field" name="password" type="password" placeholder="Password" required><div class="form-actions"><button class="btn">Sign in</button></div></form>`);
- $("loginForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const {error}=await db.auth.signInWithPassword({email:f.get("email"),password:f.get("password")});if(error)return msg(error.message);closeModal();await init()};
+function isManager(){return !!currentUser&&["owner","seller"].includes(role)}
+function waLink(number,title=""){return `https://wa.me/${number}${title?"?text="+encodeURIComponent("Hi, I am interested in "+title):""}`}
+function contactButtons(title=""){
+  return WA_NUMBERS.map((n,i)=>`<a class="btn whatsapp" target="_blank" rel="noopener" href="${waLink(n,title)}">WhatsApp ${i===0?"0767128131":"0728614316"}</a>`).join("");
 }
-async function logout(){if(db)await db.auth.signOut();currentUser=null;profile=null;role=null;$("dashboard").classList.add("hidden");$("loginNav").classList.remove("hidden");$("logoutNav").classList.add("hidden");renderProducts()}
-async function init(){
- if(!db){$("resultCount").textContent="Database setup required";$("products").innerHTML='<div class="empty" style="grid-column:1/-1">ZIXO storefront is ready for setup. Connect the database to publish real listings.</div>';return}
- const {data:{session}}=await db.auth.getSession();currentUser=session?.user||null;
- if(currentUser){const {data,error}=await db.from("profiles").select("*").eq("id",currentUser.id).single();if(!error){profile=data;role=data.role}}
- $("loginNav").classList.toggle("hidden",!!currentUser);$("logoutNav").classList.toggle("hidden",!currentUser);
- await loadSettings();
-await loadProducts();
-await loadPublicReviews();
-await loadTopupImages();
- if(currentUser&&profile){$("dashboard").classList.remove("hidden");$("dashTitle").textContent=role==="owner"?"Owner dashboard":"Seller dashboard";$("dashRole").textContent=role==="owner"?"Full website control":"You can manage your own listings and contact details";document.querySelectorAll(".owner-only").forEach(x=>x.classList.toggle("hidden",role!=="owner"));await loadMyListings();await loadProfileForm();if(role==="owner"){await loadPendingReviews();await loadSettingsForm()}}
- else $("dashboard").classList.add("hidden");
+function openLogin(){
+  if(!db)return msg("Database connection is unavailable.");
+  showModal("Seller / Owner login",`<form id="loginForm"><input class="field" name="email" type="email" placeholder="Email address" required><br><br><input class="field" name="password" type="password" placeholder="Password" required><div class="form-actions"><button class="btn">Sign in</button></div></form>`);
+  $("loginForm").onsubmit=async e=>{
+    e.preventDefault();const f=new FormData(e.target);
+    const {error}=await db.auth.signInWithPassword({email:f.get("email"),password:f.get("password")});
+    if(error)return msg(error.message);
+    closeModal();await init();
+  };
 }
-async function loadProducts(){
-  const {data,error}=await db
-    .from("products")
-    .select("*")
-    .order("created_at",{ascending:false});
-
-  if(error){
-    console.error(error);
-    $("products").innerHTML=
-      '<div class="empty">Could not load listings.</div>';
-    return;
-  }
-
-  const sellerIds=[...new Set(
-    (data||[]).map(p=>p.seller_id).filter(Boolean)
-  )];
-
-  let contacts=[];
-
-  if(sellerIds.length){
-    const {data:contactData,error:contactError}=await db
-      .from("seller_contacts")
-      .select("id,display_name,phone,whatsapp")
-      .in("id",sellerIds);
-
-    if(contactError) console.error(contactError);
-    contacts=contactData||[];
-  }
-
-  const contactMap=new Map(
-    contacts.map(c=>[c.id,c])
-  );
-
-  productsCache=(data||[]).map(p=>({
-    ...p,
-    profiles:contactMap.get(p.seller_id)||null
-  }));
-
+async function logout(){
+  if(db)await db.auth.signOut();
+  currentUser=null;profile=null;role=null;
+  $("dashboard").classList.add("hidden");$("loginNav").classList.remove("hidden");$("logoutNav").classList.add("hidden");
   renderProducts();
 }
-
+async function init(){
+  if(!db){$("resultCount").textContent="Database connection unavailable";$("products").innerHTML='<div class="empty">Could not connect to the catalogue.</div>';return;}
+  const {data:{session}}=await db.auth.getSession();currentUser=session?.user||null;
+  profile=null;role=null;
+  if(currentUser){
+    const {data,error}=await db.from("profiles").select("*").eq("id",currentUser.id).single();
+    if(error){console.error(error);msg("Could not load your user profile: "+error.message);}
+    else{profile=data;role=data.role;}
+  }
+  $("loginNav").classList.toggle("hidden",!!currentUser);
+  $("logoutNav").classList.toggle("hidden",!currentUser);
+  await loadSettings();await loadProducts();await loadPublicReviews();await loadTopupImages();
+  if(currentUser&&profile&&isManager()){
+    $("dashboard").classList.remove("hidden");
+    $("dashTitle").textContent=role==="owner"?"Owner dashboard":"Seller dashboard";
+    $("dashRole").textContent=role==="owner"?"Website owner":"Authorised content manager";
+    await loadMyListings();await loadProfileForm();await loadPendingReviews();await loadSettingsForm();
+  }else{
+    $("dashboard").classList.add("hidden");
+    if(currentUser&&profile&&!isManager())msg("This account does not have seller or owner permissions.");
+  }
+}
+async function loadProducts(){
+  const {data,error}=await db.from("products").select("*").order("created_at",{ascending:false});
+  if(error){console.error(error);$("products").innerHTML='<div class="empty">Could not load listings: '+safe(error.message)+'</div>';return;}
+  const sellerIds=[...new Set((data||[]).map(p=>p.seller_id).filter(Boolean))];
+  let contacts=[];
+  if(sellerIds.length){
+    const {data:contactData,error:contactError}=await db.from("seller_contacts").select("id,display_name,phone,whatsapp").in("id",sellerIds);
+    if(contactError)console.warn("Seller contact view:",contactError.message);
+    contacts=contactData||[];
+  }
+  const contactMap=new Map(contacts.map(c=>[c.id,c]));
+  productsCache=(data||[]).map(p=>({...p,profiles:contactMap.get(p.seller_id)||null}));
+  renderProducts();
+}
 function renderProducts(){
-  const q=($("search")?.value||"").toLowerCase();
-  const min=Number($("minPrice")?.value||0);
-  const max=Number($("maxPrice")?.value||Infinity);
+  if(!$("products"))return;
+  const q=($("search")?.value||"").toLowerCase().trim();
+  const min=$("minPrice")?.value===""?0:Number($("minPrice")?.value||0);
+  const max=$("maxPrice")?.value===""?Infinity:Number($("maxPrice")?.value||Infinity);
+  const category=$("categoryFilter")?.value||"all";
   const st=$("statusFilter")?.value||"available";
-
-  const list=productsCache.filter(p=>
-    (st==="all"||p.status===st)&&
-    Number(p.price)>=min&&
-    Number(p.price)<=max&&
-    (`${p.title} ${p.description} ${p.category||""}`)
-      .toLowerCase().includes(q)
-  );
-
+  const list=productsCache.filter(p=>{
+    const cat=(p.category||"Other").toLowerCase();
+    const categoryMatch=category==="all"||(category==="Other"?!["tiktok","free fire","youtube"].includes(cat):cat===category.toLowerCase());
+    return (st==="all"||String(p.status).toLowerCase()===st)&&Number(p.price)>=min&&Number(p.price)<=max&&categoryMatch&&(`${p.title} ${p.description||""} ${p.category||""}`).toLowerCase().includes(q);
+  });
   $("resultCount").textContent=`${list.length} listing(s)`;
-
-  $("products").innerHTML=list.length
-    ? list.map(p=>{
-        const imgs=p.image_urls||[];
-        const contact=p.profiles||{};
-        const phone=(contact.phone||"").trim();
-        const wa=(contact.whatsapp||"").replace(/\D/g,"");
-
-        return `
-          <article class="card">
-
-            <img
-              src="${safe(imgs[0]||"./zixo-art.jpg")}"
-              alt="${safe(p.title)}"
-            >
-
-            <div class="card-body">
-
-              <div class="row" style="justify-content:space-between">
-                <span class="tag ${p.status==="sold"?"sold":""}">
-                  ${safe(p.status.toUpperCase())}
-                </span>
-
-                <span class="muted" style="font-size:11px">
-                  ${safe(p.category||"Gaming Account")}
-                </span>
-              </div>
-
-              <h3>${safe(p.title)}</h3>
-
-              <div class="muted">
-                ${safe((p.description||"").slice(0,115))}
-              </div>
-
-              <div class="price">${money(p.price)}</div>
-
-              <div class="seller-phone">
-                Seller: ZIXO BUSINESS</div>
-<div class="seller-phone">Call: 0767128131 | 0728614316
-                ${phone?`
-                  <strong>${safe(phone)}</strong>
-                `:`<span class="muted">Contact number not added</span>`}
-              </div>
-
-              <div class="card-actions">
-                ${wa&&p.status==="available"?`
-                  <a class="btn"
-                     target="_blank"
-                     rel="noopener"
-                     href="https://wa.me/${wa}?text=${encodeURIComponent("Hi, I am interested in "+p.title)}">
-                    WhatsApp
-                  </a>
-                `:""}
-
-                <button class="btn secondary"
-                  onclick="viewProduct('${p.id}')">
-                  Details
-                </button>
-              </div>
-
-            </div>
-          </article>
-        `;
-      }).join("")
-    : '<div class="empty" style="grid-column:1/-1">No listings match your search and budget.</div>';
+  $("products").innerHTML=list.length?list.map(p=>{
+    const imgs=Array.isArray(p.image_urls)?p.image_urls:[];
+    const first=imgs[0]||"./zixo-art.jpg";
+    const status=String(p.status||"available").toLowerCase();
+    return `<article class="card">
+      <img src="${safe(first)}" alt="${safe(p.title)}" loading="lazy">
+      <div class="card-body">
+        <div class="row" style="justify-content:space-between"><span class="tag ${status==="sold"?"sold":""}">${safe(status.toUpperCase())}</span><span class="muted" style="font-size:11px">${safe(p.category||"Other")}</span></div>
+        <h3>${safe(p.title)}</h3><div class="muted">${safe((p.description||"").slice(0,115))}</div>
+        <div class="price">${money(p.price)}</div>
+        <div class="seller-phone">Seller: <strong>ZIXO BUSINESS</strong></div>
+        <div class="card-actions">${status==="available"?contactButtons(p.title):""}<button class="btn secondary" onclick="viewProduct('${p.id}')">Details &amp; proof</button></div>
+      </div>
+    </article>`;
+  }).join(""):'<div class="empty">No listings match your filters.</div>';
 }
-async function loadTopupImages(){
-  if(!db) return;
-
-  const {data,error}=await db
-    .from("topup_price_lists")
-    .select("*")
-    .order("created_at",{ascending:false});
-
-  if(error){
-    console.error("Top-up loading failed:",error.message);
-    return;
+function viewProduct(id){
+  const p=productsCache.find(x=>x.id===id);if(!p)return;
+  const pics=(p.image_urls||[]).map(u=>`<img src="${safe(u)}" alt="Account photo" style="width:100%;max-height:260px;object-fit:contain;background:#0d0c11;border-radius:10px;margin:5px 0">`).join("");
+  const proofs=(p.proof_urls||[]).map(u=>`<img src="${safe(u)}" alt="Public account proof" loading="lazy">`).join("");
+  showModal(p.title,`${pics}<p>${safe(p.description||"")}</p><h2 style="color:var(--gold)">${money(p.price)}</h2><p class="muted">Category: ${safe(p.category||"Other")} · Status: ${safe(p.status||"available")}</p><h3>Public proof</h3>${proofs?`<div class="proof-grid">${proofs}</div>`:'<p class="muted">No proof photos have been added for this listing.</p>'}<h3>Contact ZIXO BUSINESS</h3><div class="hero-contact" style="justify-content:flex-start">${contactButtons(p.title)}</div>`);
+}
+async function uploadFiles(bucket,files,userFolder){
+  const urls=[];
+  for(const file of Array.from(files||[])){
+    if(!file.type.startsWith("image/"))throw new Error("Only image files are allowed.");
+    if(file.size>8*1024*1024)throw new Error("Each image must be 8 MB or smaller.");
+    const clean=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+    const path=`${userFolder}/${crypto.randomUUID()}-${clean}`;
+    const {error}=await db.storage.from(bucket).upload(path,file,{upsert:false});
+    if(error)throw error;
+    const {data}=db.storage.from(bucket).getPublicUrl(path);
+    urls.push(data.publicUrl);
   }
-
-  topupImagesCache=data||[];
-  renderTopupGallery();
+  return urls;
 }
-function renderTopupGallery(){
-  const html=topupImagesCache.length
-    ? topupImagesCache.map(item=>`
-        <div class="topup-card">
-          <img
-            src="${safe(item.image_url)}"
-            alt="${safe(item.title||"Top-up price list")}"
-            onclick="viewTopupImage('${item.id}')"
-          >
-          <h3>${safe(item.title||"Top-up prices")}</h3>
-        </div>
-      `).join("")
-    : '<div class="empty">No top-up price lists available yet.</div>';
-
-  if($("topupPreview")) $("topupPreview").innerHTML=html;
-  if($("topupGallery")) $("topupGallery").innerHTML=html;
-}
-function viewTopupImage(id){
-  const item=topupImagesCache.find(x=>x.id===id);
-  if(!item) return;
-
-  showModal(
-    item.title||"Top-up Price List",
-    `<img src="${safe(item.image_url)}"
-      style="width:100%;max-height:75vh;object-fit:contain;border-radius:10px">`
-  );
-}
-
-function viewProduct(id){const p=productsCache.find(x=>x.id===id);if(!p)return;const pics=(p.image_urls||[]).map(u=>`<img src="${safe(u)}" style="width:100%;max-height:260px;object-fit:contain;background:#0d0c11;border-radius:10px;margin:5px 0">`).join("");const seller=p.profiles||{};const wa=(seller.whatsapp||"").replace(/\D/g,"");showModal(p.title,`${pics}<p>${safe(p.description||"")}</p><h2 style="color:var(--gold)">${money(p.price)}</h2><p class="muted">Status: ${safe(p.status)} · Seller: ${safe(seller.display_name||"")}</p><p>Seller: ZIXO BUSINESS</p>
-<p>Phone: 0767128131 / 0728614316</p>${wa?`<a class="btn" target="_blank" rel="noopener" href="https://wa.me/${wa}">Contact seller on WhatsApp</a>`:""}`)}
-function openProductForm(p=null){if(!currentUser)return openLogin();showModal(p?"Edit listing":"Add account",`<form id="productForm"><div class="form-grid"><input class="field full" name="title" placeholder="Account / product title" required value="${safe(p?.title||"")}"><textarea class="field full" name="description" placeholder="Description and details" rows="4">${safe(p?.description||"")}</textarea><input class="field" name="price" type="number" min="0" placeholder="Price in LKR" required value="${p?.price||""}"><input class="field" name="category" placeholder="Category" value="${safe(p?.category||"")}"><select class="field" name="status"><option value="available" ${p?.status!=="sold"?"selected":""}>Available</option><option value="sold" ${p?.status==="sold"?"selected":""}>Sold</option></select><input class="field" name="photos" type="file" accept="image/*" multiple><div class="full muted" style="font-size:12px">Upload account photos. Never upload passwords, OTPs or recovery codes.</div></div><div class="form-actions"><button class="btn">Save listing</button></div></form>`);
- $("productForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),files=e.target.photos.files;let urls=p?.image_urls||[];for(const file of files){const path=`${currentUser.id}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;const {error}=await db.storage.from("product-images").upload(path,file,{upsert:false});if(error)return msg("Image upload failed: "+error.message);const {data}=db.storage.from("product-images").getPublicUrl(path);urls.push(data.publicUrl)}
- const payload={title:f.get("title"),description:f.get("description"),price:Number(f.get("price")),category:f.get("category"),status:f.get("status"),image_urls:urls};
- let result=p?await db.from("products").update(payload).eq("id",p.id):await db.from("products").insert({...payload,seller_id:currentUser.id});
- if(result.error)return msg(result.error.message);closeModal();await loadProducts();await loadMyListings()};
-}
-async function loadTopupManager(){
-  await loadTopupImages();
-
-  const box=$("topupManager");
-  if(!box) return;
-
-  box.innerHTML=topupImagesCache.length
-    ? topupImagesCache.map(item=>`
-        <div class="topup-card">
-          <img src="${safe(item.image_url)}" alt="${safe(item.title||"Top-up")}" >
-          <h3>${safe(item.title||"Top-up prices")}</h3>
-          <button class="btn secondary small"
-            onclick="deleteTopupImage('${item.id}')">
-            Delete
-          </button>
-        </div>
-      `).join("")
-    : '<div class="empty">No uploaded price lists yet.</div>';
-}
-async function uploadTopupImages(e){
-  e.preventDefault();
-
-  if(!db || !currentUser) return msg("Please log in first.");
-
-  const title=$("topupTitle").value.trim();
-  const files=$("topupImages").files;
-
-  if(!title || !files.length) return msg("Enter a title and select images.");
-
-  for(const file of files){
-    const path=`${currentUser.id}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;
-
-    const {error}=await db.storage
-      .from("topup-price-lists")
-      .upload(path,file);
-
-    if(error) return msg(error.message);
-
-    const {data}=db.storage
-      .from("topup-price-lists")
-      .getPublicUrl(path);
-
-    const {error:insertError}=await db.from("topup_price_lists").insert({
-      title,
-      image_url:data.publicUrl,
-      storage_path:path,
-      seller_id:currentUser.id
-    });
-
-    if(insertError) return msg(insertError.message);
-  }
-
-  e.target.reset();
-  await loadTopupManager();
-  msg("Top-up images uploaded.");
-}
-
-$("topupUploadForm").addEventListener("submit",uploadTopupImages);
-async function deleteTopupImage(id){
-  if(!confirm("Delete this top-up image?")) return;
-
-  const item=topupImagesCache.find(x=>x.id===id);
-  if(!item) return;
-
-  const {error}=await db.from("topup_price_lists")
-    .delete()
-    .eq("id",id);
-
-  if(error) return msg(error.message);
-
-  if(item.storage_path){
-    const {error:storageError}=await db.storage
-      .from("topup-price-lists")
-      .remove([item.storage_path]);
-
-    if(storageError) console.error(storageError.message);
-  }
-
-  await loadTopupManager();
-  msg("Top-up image deleted.");
+function openProductForm(p=null){
+  if(!isManager())return openLogin();
+  const categories=["TikTok","Free Fire","YouTube","Other"];
+  showModal(p?"Edit account listing":"Add account listing",`<form id="productForm"><div class="form-grid">
+    <input class="field full" name="title" placeholder="Account title" required value="${safe(p?.title||"")}">
+    <textarea class="field full" name="description" placeholder="Description and account details" rows="4">${safe(p?.description||"")}</textarea>
+    <input class="field" name="price" type="number" min="0" placeholder="Price in LKR" required value="${p?.price??""}">
+    <select class="field" name="category">${categories.map(c=>`<option value="${c}" ${(p?.category||"Other")===c?"selected":""}>${c}</option>`).join("")}</select>
+    <select class="field" name="status"><option value="available" ${String(p?.status||"available").toLowerCase()==="available"?"selected":""}>Available</option><option value="sold" ${String(p?.status||"").toLowerCase()==="sold"?"selected":""}>Sold</option></select>
+    <label class="field full">Account photos <input style="display:block;margin-top:8px;width:100%" name="photos" type="file" accept="image/*" multiple></label>
+    <label class="field full">Public proof photos <input style="display:block;margin-top:8px;width:100%" name="proofs" type="file" accept="image/*" multiple></label>
+    <div class="help full">Proof photos are public and customers can view them. Do not upload passwords, OTPs, recovery codes, private messages or personal information.</div>
+  </div><div class="form-actions"><button class="btn">Save listing</button></div></form>`);
+  $("productForm").onsubmit=async e=>{
+    e.preventDefault();const form=e.target;const f=new FormData(form);const button=form.querySelector("button[type=submit],button:not([type])");if(button){button.disabled=true;button.textContent="Saving…";}
+    try{
+      const newImages=await uploadFiles("product-images",form.photos.files,currentUser.id);
+      const newProofs=await uploadFiles("proof-images",form.proofs.files,currentUser.id);
+      const payload={title:f.get("title"),description:f.get("description"),price:Number(f.get("price")),category:f.get("category"),status:f.get("status"),image_urls:[...(p?.image_urls||[]),...newImages],proof_urls:[...(p?.proof_urls||[]),...newProofs]};
+      const result=p?await db.from("products").update(payload).eq("id",p.id):await db.from("products").insert({...payload,seller_id:currentUser.id});
+      if(result.error)throw result.error;
+      closeModal();await loadProducts();await loadMyListings();msg("Listing saved.");
+    }catch(err){msg("Could not save listing: "+(err.message||err));if(button){button.disabled=false;button.textContent="Save listing";}}
+  };
 }
 async function loadMyListings(){
-  const query=db.from("products").select("*").order("created_at",{ascending:false});
-  if(role!=="owner") query.eq("seller_id",currentUser.id);
-
-  const {data,error}=await query;
-  if(error) return;
-
-  $("myListings").innerHTML=(data||[]).map(p=>`
-    <div class="admin-item">
-      <div>
-        <strong>${safe(p.title)}</strong>
-        <div class="muted">${money(p.price)} · ${safe(p.status)}</div>
-      </div>
-      <div class="row">
-        <button class="btn secondary small"
-          onclick="openProductForm(productsCache.find(x=>x.id==='${p.id}')||${JSON.stringify(p).replace(/</g,"\\u003c")})">Edit</button>
-        <button class="btn secondary small" onclick="deleteProduct('${p.id}')">Delete</button>
-      </div>
-    </div>
-  `).join("")||'<div class="empty">No listings yet.</div>';
+  const {data,error}=await db.from("products").select("*").order("created_at",{ascending:false});
+  if(error){console.error(error);$("myListings").innerHTML='<div class="empty">Could not load listings: '+safe(error.message)+'</div>';return;}
+  $("myListings").innerHTML=(data||[]).map(p=>`<div class="admin-item"><div><strong>${safe(p.title)}</strong><div class="muted">${money(p.price)} · ${safe(p.category||"Other")} · ${safe(p.status)}</div></div><div class="row"><button class="btn secondary small" onclick="editListing('${p.id}')">Edit</button><button class="btn secondary small" onclick="deleteProduct('${p.id}')">Delete</button></div></div>`).join("")||'<div class="empty">No listings yet.</div>';
 }
-async function deleteProduct(id){if(!confirm("Delete this listing?"))return;const {error}=await db.from("products").delete().eq("id",id);if(error)return msg(error.message);await loadProducts();await loadMyListings()}
-async function loadProfileForm(){const f=$("profileForm");f.display_name.value=profile?.display_name||"";f.phone.value=profile?.phone||"";f.whatsapp.value=profile?.whatsapp||"";f.facebook.value=profile?.facebook||"";f.onsubmit=async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(f));const {error}=await db.from("profiles").update(data).eq("id",currentUser.id);if(error)return msg(error.message);await init();msg("Contact details saved.")}}
-async function loadSettings(){const {data}=await db.from("site_settings").select("*").eq("id",1).maybeSingle();if(data){$("footerText").textContent=data.footer_text||"ZIXO • Account catalogue";$("ownerFooter").textContent=[data.owner_name,data.owner_phone,data.owner_whatsapp].filter(Boolean).join(" · ")}}
-async function loadSettingsForm(){const {data}=await db.from("site_settings").select("*").eq("id",1).maybeSingle();const f=$("settingsForm");if(data){f.owner_name.value=data.owner_name||"";f.owner_phone.value=data.owner_phone||"";f.owner_whatsapp.value=data.owner_whatsapp||"";f.footer_text.value=data.footer_text||""}f.onsubmit=async e=>{e.preventDefault();const values=Object.fromEntries(new FormData(f));const {error}=await db.from("site_settings").upsert({id:1,...values});if(error)return msg(error.message);await loadSettings();msg("Footer updated.")}}
+function editListing(id){const p=productsCache.find(x=>x.id===id);if(p)openProductForm(p);else msg("Reload the listings and try again.");}
+async function deleteProduct(id){
+  if(!isManager()||!confirm("Delete this listing?"))return;
+  const {error}=await db.from("products").delete().eq("id",id);
+  if(error)return msg(error.message);
+  await loadProducts();await loadMyListings();msg("Listing deleted.");
+}
+async function loadProfileForm(){
+  const f=$("profileForm");if(!f||!profile)return;
+  f.display_name.value=profile.display_name||"";f.phone.value=profile.phone||"";f.whatsapp.value=profile.whatsapp||"";f.facebook.value=profile.facebook||"";
+  f.onsubmit=async e=>{e.preventDefault();const values=Object.fromEntries(new FormData(f));const {error}=await db.from("profiles").update(values).eq("id",currentUser.id);if(error)return msg(error.message);await init();msg("Contact details saved.");};
+}
+async function loadSettings(){
+  const {data,error}=await db.from("site_settings").select("*").eq("id",1).maybeSingle();
+  if(error)console.warn("Site settings:",error.message);
+  if(data){$("footerText").textContent=data.footer_text||"ZIXO • Account catalogue";$("ownerFooter").textContent=[data.owner_name,data.owner_phone,data.owner_whatsapp].filter(Boolean).join(" · ");}
+}
+async function loadSettingsForm(){
+  const {data,error}=await db.from("site_settings").select("*").eq("id",1).maybeSingle();
+  if(error)console.warn(error.message);
+  const f=$("settingsForm");if(!f)return;
+  if(data){f.owner_name.value=data.owner_name||"";f.owner_phone.value=data.owner_phone||"";f.owner_whatsapp.value=data.owner_whatsapp||"";f.footer_text.value=data.footer_text||"";}
+  f.onsubmit=async e=>{e.preventDefault();const values=Object.fromEntries(new FormData(f));const {error}=await db.from("site_settings").upsert({id:1,...values});if(error)return msg(error.message);await loadSettings();msg("Website footer updated.");};
+}
+async function loadTopupImages(){
+  if(!db)return;
+  const {data,error}=await db.from("topup_price_lists").select("*").order("created_at",{ascending:false});
+  if(error){console.error("Top-up loading failed:",error.message);return;}
+  topupImagesCache=data||[];renderTopupGallery();
+}
+function renderTopupGallery(){
+  const html=topupImagesCache.length?topupImagesCache.map(item=>`<div class="topup-card"><img src="${safe(item.image_url)}" alt="${safe(item.title||"Top-up price list")}" onclick="viewTopupImage('${item.id}')"><h3>${safe(item.title||"Top-up prices")}</h3></div>`).join(""):'<div class="empty">No top-up price lists available yet.</div>';
+  if($("topupPreview"))$("topupPreview").innerHTML=html;if($("topupGallery"))$("topupGallery").innerHTML=html;
+}
+function viewTopupImage(id){const item=topupImagesCache.find(x=>x.id===id);if(item)showModal(item.title||"Top-up price list",`<img src="${safe(item.image_url)}" alt="${safe(item.title)}" style="width:100%;max-height:75dvh;object-fit:contain;border-radius:10px">`);}
+async function loadTopupManager(){
+  await loadTopupImages();const box=$("topupManager");if(!box)return;
+  box.innerHTML=topupImagesCache.length?topupImagesCache.map(item=>`<div class="topup-card"><img src="${safe(item.image_url)}" alt="${safe(item.title||"Top-up")}"><h3>${safe(item.title||"Top-up prices")}</h3><button class="btn secondary small" onclick="deleteTopupImage('${item.id}')">Delete</button></div>`).join(""):'<div class="empty">No uploaded price lists yet.</div>';
+}
+async function uploadTopupImages(e){
+  e.preventDefault();if(!isManager())return msg("Please sign in as the seller or owner.");
+  const title=$("topupTitle").value.trim();const files=$("topupImages").files;if(!title||!files.length)return msg("Enter a title and select images.");
+  try{
+    for(const file of files){
+      const urls=await uploadFiles("topup-price-lists",[file],currentUser.id);
+      const pathPart=decodeURIComponent(urls[0].split("/").pop());
+      const {error}=await db.from("topup_price_lists").insert({title,image_url:urls[0],storage_path:`${currentUser.id}/${pathPart}`,seller_id:currentUser.id});
+      if(error)throw error;
+    }
+    e.target.reset();await loadTopupManager();msg("Top-up images uploaded.");
+  }catch(err){msg("Upload failed: "+(err.message||err));}
+}
+$("topupUploadForm").addEventListener("submit",uploadTopupImages);
+async function deleteTopupImage(id){
+  if(!isManager()||!confirm("Delete this top-up image?"))return;
+  const item=topupImagesCache.find(x=>x.id===id);if(!item)return;
+  const {error}=await db.from("topup_price_lists").delete().eq("id",id);if(error)return msg(error.message);
+  if(item.storage_path){const {error:storageError}=await db.storage.from("topup-price-lists").remove([item.storage_path]);if(storageError)console.warn(storageError.message);}
+  await loadTopupManager();msg("Top-up image deleted.");
+}
 function showTab(name){
-  ["listings","profile","reviews","settings","topups"].forEach(t=>{
-    const el=$("tab-"+t);
-    if(el) el.classList.toggle("hidden",t!==name);
-  });
-
-  document.querySelectorAll(".tab").forEach(b=>{
-    b.classList.toggle("active",b.dataset.tab===name);
-    b.classList.toggle("secondary",b.dataset.tab!==name);
-  });
-
-  if(name==="topups" && currentUser){
-    loadTopupManager();
-  }
-}async function loadPublicReviews(){const {data}=await db.from("reviews").select("*").eq("status","approved").order("created_at",{ascending:false}).limit(20);$("publicReviews").innerHTML=(data||[]).length?(data||[]).map(r=>`<div class="review"><strong>${safe(r.customer_name)}</strong><div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div><p>${safe(r.comment)}</p></div>`).join(""):'<div class="muted">No approved reviews yet. Be the first to leave feedback.</div>'}
-function openReviewForm(){showModal("Write customer feedback",`<form id="reviewForm"><input class="field" name="customer_name" placeholder="Your name" required><br><br><select class="field" name="rating"><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select><br><br><textarea class="field" name="comment" rows="4" placeholder="Write your feedback" required></textarea><p class="muted">Your review will appear after owner approval.</p><div class="form-actions"><button class="btn">Submit review</button></div></form>`);$("reviewForm").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const {error}=await db.from("reviews").insert({customer_name:f.get("customer_name"),rating:Number(f.get("rating")),comment:f.get("comment"),status:"pending"});if(error)return msg(error.message);closeModal();msg("Review submitted for approval.")}}
-function openReviews(){document.querySelector("#publicReviews").scrollIntoView({behavior:"smooth"})}
-async function loadPendingReviews(){const {data}=await db.from("reviews").select("*").eq("status","pending").order("created_at",{ascending:false});$("pendingReviews").innerHTML=(data||[]).map(r=>`<div class="admin-item"><div><strong>${safe(r.customer_name)} · ${"★".repeat(r.rating)}</strong><div>${safe(r.comment)}</div></div><div class="row"><button class="btn small" onclick="moderateReview('${r.id}','approved')">Approve</button><button class="btn secondary small" onclick="moderateReview('${r.id}','rejected')">Reject</button></div></div>`).join("")||'<div class="empty">No pending reviews.</div>'}
-async function moderateReview(id,status){const {error}=await db.from("reviews").update({status}).eq("id",id);if(error)return msg(error.message);await loadPendingReviews();await loadPublicReviews()}
+  ["listings","profile","reviews","settings","topups"].forEach(t=>{const el=$("tab-"+t);if(el)el.classList.toggle("hidden",t!==name);});
+  document.querySelectorAll(".tab").forEach(b=>{b.classList.toggle("active",b.dataset.tab===name);b.classList.toggle("secondary",b.dataset.tab!==name);});
+  if(name==="topups"&&currentUser)loadTopupManager();
+  if(name==="reviews"&&currentUser)loadPendingReviews();
+}
+async function loadPublicReviews(){
+  const {data,error}=await db.from("reviews").select("*").eq("status","approved").order("created_at",{ascending:false}).limit(30);
+  if(error){console.warn(error.message);$("publicReviews").innerHTML='<div class="muted">Customer feedback is temporarily unavailable.</div>';return;}
+  $("publicReviews").innerHTML=(data||[]).length?(data||[]).map(r=>{
+    const photos=(r.photo_urls||[]).map(u=>`<img src="${safe(u)}" alt="Customer review photo" loading="lazy">`).join("");
+    return `<div class="review"><strong>${safe(r.customer_name)}</strong><div class="stars">${"★".repeat(Number(r.rating))}${"☆".repeat(5-Number(r.rating))}</div><p>${safe(r.comment)}</p>${photos?`<div class="proof-grid">${photos}</div>`:""}</div>`;
+  }).join(""):'<div class="muted">No approved reviews yet. Be the first to leave feedback.</div>';
+}
+function openReviewForm(){
+  showModal("Write customer feedback",`<form id="reviewForm"><div class="form-grid">
+    <input class="field full" name="customer_name" placeholder="Your name" required>
+    <select class="field full" name="rating"><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select>
+    <textarea class="field full" name="comment" rows="4" placeholder="Write your feedback" required></textarea>
+    <label class="field full">Photos (optional)<input style="display:block;width:100%;margin-top:8px" name="photos" type="file" accept="image/*" multiple></label>
+    <div class="help full">Adding photos is optional. Please do not include passwords, OTPs, private messages or personal information.</div>
+  </div><p class="muted">Your review will appear after moderation.</p><div class="form-actions"><button class="btn">Submit review</button></div></form>`);
+  $("reviewForm").onsubmit=async e=>{
+    e.preventDefault();const form=e.target;const f=new FormData(form);const button=form.querySelector("button");button.disabled=true;button.textContent="Submitting…";
+    try{
+      const photoUrls=await uploadFiles("review-images",form.photos.files,"customer-reviews");
+      const {error}=await db.from("reviews").insert({customer_name:f.get("customer_name"),rating:Number(f.get("rating")),comment:f.get("comment"),photo_urls:photoUrls,status:"pending"});
+      if(error)throw error;closeModal();msg("Review submitted for moderation.");
+    }catch(err){msg("Could not submit review: "+(err.message||err));button.disabled=false;button.textContent="Submit review";}
+  };
+}
+function openReviews(){$("publicReviews").scrollIntoView({behavior:"smooth",block:"start"});}
+async function loadPendingReviews(){
+  const {data,error}=await db.from("reviews").select("*").eq("status","pending").order("created_at",{ascending:false});
+  if(error){console.error(error);$("pendingReviews").innerHTML='<div class="empty">Could not load pending reviews: '+safe(error.message)+'</div>';return;}
+  $("pendingReviews").innerHTML=(data||[]).map(r=>{
+    const photos=(r.photo_urls||[]).map(u=>`<img src="${safe(u)}" alt="Customer photo" style="width:100px;height:90px;object-fit:cover;border-radius:8px">`).join("");
+    return `<div class="admin-item"><div><strong>${safe(r.customer_name)} · ${"★".repeat(r.rating)}</strong><div>${safe(r.comment)}</div><div class="row" style="margin-top:8px">${photos}</div></div><div class="row"><button class="btn small" onclick="moderateReview('${r.id}','approved')">Approve</button><button class="btn secondary small" onclick="moderateReview('${r.id}','rejected')">Reject</button></div></div>`;
+  }).join("")||'<div class="empty">No pending reviews.</div>';
+}
+async function moderateReview(id,status){
+  if(!isManager())return;
+  const {error}=await db.from("reviews").update({status}).eq("id",id);if(error)return msg(error.message);
+  await loadPendingReviews();await loadPublicReviews();
+}
+function openReviewsForm(){openReviewForm();}
 init();
 </script>
 </body>
