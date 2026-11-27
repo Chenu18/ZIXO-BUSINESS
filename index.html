@@ -823,21 +823,88 @@ function openReviewForm(){
 function openReviews(){$("publicReviews").scrollIntoView({behavior:"smooth",block:"start"})}
 
 
+
 async function loadPendingReviews(){
- const {data,error}=await db.from("reviews").select("*").eq("status","pending").order("created_at",{ascending:false});
+ const {data,error}=await db.from("reviews")
+  .select("*")
+  .eq("status","pending")
+  .order("created_at",{ascending:false});
+
  if(error){
   console.error(error);
   $("pendingReviews").innerHTML='<div class="empty">Could not load pending reviews: '+safe(error.message)+'</div>';
   return;
  }
+
  $("pendingReviews").innerHTML=(data||[]).map(r=>{
-  const photos=(r.photo_urls||[]).map(u=>`<img src="${safe(u)}" alt="Customer photo" style="width:100px;height:90px;object-fit:cover;border-radius:8px">`).join("");
-  return `<div class="admin-item"><div><strong>${safe(r.customer_name)} · ${"★".repeat(r.rating)}</strong><div>${safe(r.comment)}</div><div class="row" style="margin-top:8px">${photos}</div></div><div class="row"><button class="btn small" onclick="moderateReview('${r.id}','approved')">Approve</button><button class="btn secondary small" onclick="moderateReview('${r.id}','rejected')">Reject</button><button class="btn secondary small" onclick="deleteReview('${r.id}')">Delete</button></div></div>`;
+  const photos=(r.photo_urls||[]).map(u=>
+   `<img src="${safe(u)}" alt="Customer photo" style="width:100px;height:90px;object-fit:cover;border-radius:8px">`
+  ).join("");
+
+  return `<div class="admin-item">
+   <div>
+    <strong>${safe(r.customer_name)} · ${"★".repeat(Number(r.rating))}</strong>
+    <div>${safe(r.comment)}</div>
+    <div class="row" style="margin-top:8px">${photos}</div>
+   </div>
+   <div class="row">
+    <button class="btn small" onclick="moderateReview('${r.id}','approved')">Approve</button>
+    <button class="btn secondary small" onclick="moderateReview('${r.id}','rejected')">Reject</button>
+    <button class="btn secondary small" onclick="deleteReview('${r.id}')">Delete</button>
+   </div>
+  </div>`;
  }).join("")||'<div class="empty">No pending reviews.</div>';
 }
 
+async function loadApprovedReviews(){
+ const {data,error}=await db.from("reviews")
+  .select("*")
+  .eq("status","approved")
+  .order("created_at",{ascending:false});
+
+ if(error){
+  console.error(error);
+  $("approvedReviews").innerHTML='<div class="empty">Could not load approved reviews: '+safe(error.message)+'</div>';
+  return;
+ }
+
+ $("approvedReviews").innerHTML=(data||[]).map(r=>{
+  const photos=(r.photo_urls||[]).map(u=>
+   `<img src="${safe(u)}" alt="Customer photo" style="width:100px;height:90px;object-fit:cover;border-radius:8px">`
+  ).join("");
+
+  return `<div class="admin-item">
+   <div>
+    <strong>${safe(r.customer_name)} · ${"★".repeat(Number(r.rating))}</strong>
+    <div>${safe(r.comment)}</div>
+    <div class="row" style="margin-top:8px">${photos}</div>
+   </div>
+   <div class="row">
+    <button class="btn secondary small" onclick="deleteApprovedReview('${r.id}')">Delete</button>
+   </div>
+  </div>`;
+ }).join("")||'<div class="empty">No approved reviews.</div>';
+}
+
+async function deleteApprovedReview(id){
+ if(!isManager())return;
+ if(!confirm("Permanently delete this review?"))return;
+
+ const {error}=await db.from("reviews").delete().eq("id",id);
+
+ if(error){
+  alert("Delete failed: "+error.message);
+  return;
+ }
+
+ alert("Review deleted successfully.");
+ await loadApprovedReviews();
+ await loadPublicReviews();
+}
+
 async function deleteReview(id){
- if(!confirm("Permanently delete this customer review?")) return;
+ if(!isManager())return;
+ if(!confirm("Permanently delete this customer review?"))return;
 
  const {error}=await db.from("reviews").delete().eq("id",id);
 
@@ -850,6 +917,7 @@ async function deleteReview(id){
  await loadPendingReviews();
  await loadPublicReviews();
 }
+
 
 async function moderateReview(id,status){
  if(!isManager())return;
