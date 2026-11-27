@@ -351,7 +351,7 @@ function closeModal(){$("modal").style.display="none"}
 function showModal(title,html){$("modalTitle").textContent=title;$("modalBody").innerHTML=html;$("modal").style.display="flex"}
 function isManager(){return !!currentUser&&!!profile&&["owner","seller"].includes(role)}
 function waLink(number,title=""){return `https://wa.me/${number}${title?"?text="+encodeURIComponent("Hi, I am interested in "+title):""}`}
-function contactButtons(title=""){return WA_NUMBERS.map((n,i)=>`<a class="btn whatsapp" target="_blank" rel="noopener" href="${waLink(n,title)}">WhatsApp ${i===0?"0767128131":"0728614316"}</a>`).join("")}
+function contactButtons(title=""){return WA_NUMBERS.map((n,i)=>`<a class="btn whatsapp" target="_blank" rel="noopener" href="${waLink(n,title)}">WhatsApp ${i===0?"0767128131":"0724266185"}</a>`).join("")}
 
 function toggleCustomerProofs(){
  const box=$("publicProofGallery");
