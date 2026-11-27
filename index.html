@@ -259,7 +259,15 @@ footer strong{color:#c6bdc5}
 <div id="topupManager" class="topup-grid" style="margin-top:20px"><div class="empty">Your uploaded images will appear here.</div></div>
 </div>
 
-<div id="tab-reviews" class="hidden"><h3>Review moderation</h3><div id="pendingReviews" class="admin-list"></div></div>
+<div id="tab-reviews" class="hidden">
+  <h3>Pending Reviews</h3>
+  <div id="pendingReviews" class="admin-list"></div>
+
+  <hr style="margin:25px 0">
+
+  <h3>Approved Reviews</h3>
+  <div id="approvedReviews" class="admin-list"></div>
+</div></div></div>
 
 <div id="tab-settings" class="hidden">
 <h3>Website footer details</h3>
@@ -766,7 +774,10 @@ function showTab(name){
   b.classList.toggle("secondary",b.dataset.tab!==name);
  });
  if(name==="topups"&&currentUser)loadTopupManager();
- if(name==="reviews"&&currentUser)loadPendingReviews();
+ if(name==="reviews"&&currentUser){
+ loadPendingReviews();
+ loadApprovedReviews();
+}
  if(name==="proofs"&&currentUser)loadProofManager();
  if(name==="appearance"&&currentUser)loadAppearanceForm();
 }
@@ -811,6 +822,7 @@ function openReviewForm(){
 
 function openReviews(){$("publicReviews").scrollIntoView({behavior:"smooth",block:"start"})}
 
+
 async function loadPendingReviews(){
  const {data,error}=await db.from("reviews").select("*").eq("status","pending").order("created_at",{ascending:false});
  if(error){
@@ -820,8 +832,23 @@ async function loadPendingReviews(){
  }
  $("pendingReviews").innerHTML=(data||[]).map(r=>{
   const photos=(r.photo_urls||[]).map(u=>`<img src="${safe(u)}" alt="Customer photo" style="width:100px;height:90px;object-fit:cover;border-radius:8px">`).join("");
-  return `<div class="admin-item"><div><strong>${safe(r.customer_name)} · ${"★".repeat(r.rating)}</strong><div>${safe(r.comment)}</div><div class="row" style="margin-top:8px">${photos}</div></div><div class="row"><button class="btn small" onclick="moderateReview('${r.id}','approved')">Approve</button><button class="btn secondary small" onclick="moderateReview('${r.id}','rejected')">Reject</button></div></div>`;
+  return `<div class="admin-item"><div><strong>${safe(r.customer_name)} · ${"★".repeat(r.rating)}</strong><div>${safe(r.comment)}</div><div class="row" style="margin-top:8px">${photos}</div></div><div class="row"><button class="btn small" onclick="moderateReview('${r.id}','approved')">Approve</button><button class="btn secondary small" onclick="moderateReview('${r.id}','rejected')">Reject</button><button class="btn secondary small" onclick="deleteReview('${r.id}')">Delete</button></div></div>`;
  }).join("")||'<div class="empty">No pending reviews.</div>';
+}
+
+async function deleteReview(id){
+ if(!confirm("Permanently delete this customer review?")) return;
+
+ const {error}=await db.from("reviews").delete().eq("id",id);
+
+ if(error){
+  alert("Could not delete review: "+error.message);
+  return;
+ }
+
+ alert("Review deleted successfully.");
+ await loadPendingReviews();
+ await loadPublicReviews();
 }
 
 async function moderateReview(id,status){
